@@ -5,7 +5,7 @@ import { ADMIN_LOGIN } from 'src/utils/constants';
 @Injectable({
   providedIn: 'root',
 })
-export class HomeServiceService {
+export class HomeService {
   constructor(private httpClient: HttpClient) {}
 
   adminLogin = (payload: any) => {
