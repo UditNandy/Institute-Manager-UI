@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormGroup,
   UntypedFormControl,
@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { HomeService } from '../../service/home-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,6 +15,7 @@ import { HomeService } from '../../service/home-service.service';
 })
 export class SignInComponent {
   protected loginForm = new FormGroup({});
+  @Output() login = new EventEmitter<boolean>();
 
   constructor(private homeService: HomeService) {}
 
@@ -41,6 +43,7 @@ export class SignInComponent {
     this.homeService.adminLogin(adminLoginPaylaod).subscribe({
       next: (value) => {
         console.log(value);
+        this.login.emit(true);
       },
       error: (error) => {},
     });
