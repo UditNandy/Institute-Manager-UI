@@ -13,7 +13,7 @@
       <app-sign-in (login)="isAdminLoggedIn($event)"></app-sign-in>
     </ng-container>
     <ng-container *ngIf="loggedIn">
-      <router-outlet></router-outlet>
+      <app-admin-dashboard></app-admin-dashboard>
     </ng-container>
   </div>
 </div>
