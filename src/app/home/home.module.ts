@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { RouterModule } from '@angular/router';
+import { HomeRoutingModule } from './home-routing.module';
 
 @NgModule({
   declarations: [SignInComponent, HomeViewComponent, AdminDashboardComponent],
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     HttpClientModule,
     RouterModule,
+    HomeRoutingModule,
   ],
   exports: [HomeViewComponent],
 })

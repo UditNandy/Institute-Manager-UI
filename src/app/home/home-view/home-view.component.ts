@@ -6,16 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-view.component.css'],
 })
 export class HomeViewComponent {
-  protected loggedIn: boolean = false;
-
   constructor() {}
 
-  ngOnInit = () => {
-    this.loggedIn = false;
-  };
-
-  isAdminLoggedIn = (event: any) => {
-    this.loggedIn = true;
-    // this.loggedIn = Boolean(event.value);
-  };
+  ngOnInit = () => {};
 }

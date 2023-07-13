@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormGroup,
   UntypedFormControl,
@@ -15,9 +15,8 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent {
   protected loginForm = new FormGroup({});
-  @Output() login = new EventEmitter<boolean>();
 
-  constructor(private homeService: HomeService) {}
+  constructor(private homeService: HomeService, private router: Router) {}
 
   ngOnInit() {
     this.loginForm = this.buildAdminLoginForm();
@@ -35,15 +34,13 @@ export class SignInComponent {
   };
 
   submitAdminLogin = () => {
-    console.log(this.loginForm);
     const adminLoginPaylaod = {
       id: this.loginForm.get('username')?.value,
       password: this.loginForm.get('password')?.value,
     };
     this.homeService.adminLogin(adminLoginPaylaod).subscribe({
       next: (value) => {
-        console.log(value);
-        this.login.emit(true);
+        this.router.navigate(['/admindashboard']);
       },
       error: (error) => {},
     });

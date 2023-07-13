@@ -9,11 +9,6 @@
 </div>
 <div class="flex justify-center mt-[100px]">
   <div class="loginContainer w-[473px] h-[419px]">
-    <ng-container *ngIf="!loggedIn">
-      <app-sign-in (login)="isAdminLoggedIn($event)"></app-sign-in>
-    </ng-container>
-    <ng-container *ngIf="loggedIn">
-      <app-admin-dashboard></app-admin-dashboard>
-    </ng-container>
+    <router-outlet></router-outlet>
   </div>
 </div>
