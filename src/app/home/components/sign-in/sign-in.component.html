@@ -1,38 +1,51 @@
-<div class="h-full w-full bg-[#eaeced] rounded-[20px]">
-  <div class="flex justify-center">
-    <div class="font-hindMadurai text-3xl mt-[30px]">Login</div>
+<div class="flex align-top mt-[10px]">
+  <div>
+    <img
+      src="../../../assets/images/institute-manager-low-resolution-logo-black-on-transparent-background 1.svg"
+      height="70px"
+      width="300px"
+    />
   </div>
-  <form [formGroup]="loginForm">
-    <div class="mx-10 mt-[52px]">
-      <div class="flex flex-col gap-y-3">
-        <div>
-          <span class="font-hindMadurai text-base"> Username </span>
-          <div class="mt-[1px] bg-white w-[99%] h-[40px] rounded-[10px]">
-            <input
-              class="h-full w-full rounded-[10px] outline-none px-4"
-              [formControlName]="'username'"
-            />
+</div>
+<div class="flex justify-center mt-[100px]">
+  <div class="loginContainer w-[473px] h-[419px]">
+    <div class="h-full w-full bg-[#eaeced] rounded-[20px]">
+      <div class="flex justify-center">
+        <div class="font-hindMadurai text-3xl mt-[30px]">Login</div>
+      </div>
+      <form [formGroup]="loginForm">
+        <div class="mx-10 mt-[52px]">
+          <div class="flex flex-col gap-y-3">
+            <div>
+              <span class="font-hindMadurai text-base"> Username </span>
+              <div class="mt-[1px] bg-white w-[99%] h-[40px] rounded-[10px]">
+                <input
+                  class="h-full w-full rounded-[10px] outline-none px-4"
+                  [formControlName]="'username'"
+                />
+              </div>
+            </div>
+            <div>
+              <span class="font-hindMadurai text-base"> Password </span>
+              <div class="mt-[1px] bg-white w-[99%] h-[40px] rounded-[10px]">
+                <input
+                  type="password"
+                  class="h-full w-full rounded-[10px] outline-none px-4"
+                  [formControlName]="'password'"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="mt-[50px] flex justify-center">
+            <button
+              class="h-[40px] w-[150px] rounded-[30px] bg-[#E1E1E1] flex justify-center items-center"
+              (click)="submitAdminLogin()"
+            >
+              <span>Login</span>
+            </button>
           </div>
         </div>
-        <div>
-          <span class="font-hindMadurai text-base"> Password </span>
-          <div class="mt-[1px] bg-white w-[99%] h-[40px] rounded-[10px]">
-            <input
-              type="password"
-              class="h-full w-full rounded-[10px] outline-none px-4"
-              [formControlName]="'password'"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="mt-[50px] flex justify-center">
-        <button
-          class="h-[40px] w-[150px] rounded-[30px] bg-[#E1E1E1] flex justify-center items-center"
-          (click)="submitAdminLogin()"
-        >
-          <span>Login</span>
-        </button>
-      </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>
