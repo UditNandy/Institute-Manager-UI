@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent {
   protected loginForm = new FormGroup({});
+  protected errorMessage: string = '';
 
   constructor(private homeService: HomeService, private router: Router) {}
 
@@ -42,7 +43,9 @@ export class SignInComponent {
       next: (value) => {
         this.router.navigate(['/admindashboard']);
       },
-      error: (error) => {},
+      error: (error) => {
+        this.errorMessage = error.error.message;
+      },
     });
   };
 }

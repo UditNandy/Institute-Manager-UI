@@ -36,9 +36,16 @@
               </div>
             </div>
           </div>
-          <div class="mt-[50px] flex justify-center">
+          <div class="font-hindMadurai mt-[10px] text-red-400">
+            {{ errorMessage }}
+          </div>
+          <div
+            class="flex justify-center"
+            [ngClass]="errorMessage ? 'mt-[16px]' : 'mt-[50px]'"
+          >
             <button
-              class="h-[40px] w-[150px] rounded-[30px] bg-[#E1E1E1] flex justify-center items-center"
+              [disabled]="loginForm.invalid"
+              class="h-[40px] w-[150px] rounded-[30px] bg-[#E1E1E1] flex justify-center items-center disabled:bg-[#dddbdb] disabled:cursor-not-allowed"
               (click)="submitAdminLogin()"
             >
               <span>Login</span>
