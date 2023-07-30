@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
 export class SignInComponent {
   protected loginForm = new FormGroup({});
   protected errorMessage: string = '';
-
   constructor(private homeService: HomeService, private router: Router) {}
 
   ngOnInit() {
@@ -41,6 +40,7 @@ export class SignInComponent {
     };
     this.homeService.adminLogin(adminLoginPaylaod).subscribe({
       next: (value) => {
+        sessionStorage.setItem('access-token', value.accessToken);
         this.router.navigate(['/admindashboard']);
       },
       error: (error) => {
