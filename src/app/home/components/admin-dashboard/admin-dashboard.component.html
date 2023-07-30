@@ -1,0 +1,21 @@
+<div class="h-screen w-screen bg-[#E6EAEC] flex justify-start">
+  <div class="w-2/12 h-full bg-white flex flex-col">
+    <div>
+      <img
+        src="../../../../assets/images/institute-manager-low-resolution-logo-black-on-transparent-background 1.svg"
+      />
+    </div>
+    <div class="mt-[25px]">
+      <div *ngFor="let service of availableServices">
+        <div class="w-full font-hindMadurai text-lg text-center h-[44px]">
+          {{ service }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-10/12 flex flex-col">
+    <div class="w-full flex justify-end">
+      <div class="rounded-full bg-white w-[60px] h-[60px] mt-3 mx-[22px]"></div>
+    </div>
+  </div>
+</div>

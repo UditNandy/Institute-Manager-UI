@@ -5,6 +5,8 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+import { HomeService } from '../../service/home-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,12 +15,14 @@ import {
 })
 export class SignInComponent {
   protected loginForm = new FormGroup({});
+  protected errorMessage: string = '';
+  constructor(private homeService: HomeService, private router: Router) {}
 
   ngOnInit() {
-    this.loginForm = this.buildLoginForm();
+    this.loginForm = this.buildAdminLoginForm();
   }
 
-  buildLoginForm = (): FormGroup => {
+  buildAdminLoginForm = (): FormGroup => {
     return new UntypedFormGroup({
       username: new UntypedFormControl('', {
         validators: [Validators.required],
@@ -29,5 +33,19 @@ export class SignInComponent {
     });
   };
 
-  submitLogin = () => {};
+  submitAdminLogin = () => {
+    const adminLoginPaylaod = {
+      id: this.loginForm.get('username')?.value,
+      password: this.loginForm.get('password')?.value,
+    };
+    this.homeService.adminLogin(adminLoginPaylaod).subscribe({
+      next: (value) => {
+        sessionStorage.setItem('access-token', value.accessToken);
+        this.router.navigate(['/admindashboard']);
+      },
+      error: (error) => {
+        this.errorMessage = error.error.message;
+      },
+    });
+  };
 }
