@@ -7,8 +7,12 @@
     </div>
     <div class="mt-[25px]">
       <div *ngFor="let service of availableServices">
-        <div class="w-full font-hindMadurai text-lg text-center h-[44px]">
-          {{ service }}
+        <div
+          (click)="navigateToService(service.route)"
+          class="flex items-center justify-center cursor-pointer w-full font-hindMadurai text-lg h-[44px]"
+          [ngClass]="currentRoute === service.route ? 'bg-[#E6EAEC]' : ''"
+        >
+          {{ service.label }}
         </div>
       </div>
     </div>
@@ -16,6 +20,11 @@
   <div class="w-10/12 flex flex-col">
     <div class="w-full flex justify-end">
       <div class="rounded-full bg-white w-[60px] h-[60px] mt-3 mx-[22px]"></div>
+    </div>
+    <div class="h-full px-[22px] pt-4 pb-5">
+      <div class="h-full w-full rounded-[20px] bg-white">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>

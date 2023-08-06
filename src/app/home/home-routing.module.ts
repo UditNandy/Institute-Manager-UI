@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeViewComponent } from './home-view/home-view.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AuthorizationHomeComponent } from '../features/authorization-management/view/authorization-home/authorization-home.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,16 @@ const routes: Routes = [
     component: HomeViewComponent,
     children: [
       { path: '', component: SignInComponent },
-      { path: 'admindashboard', component: AdminDashboardComponent },
+      {
+        path: 'admindashboard',
+        component: AdminDashboardComponent,
+        children: [
+          {
+            path: 'authorization-management',
+            component: AuthorizationHomeComponent,
+          },
+        ],
+      },
     ],
   },
 ];
