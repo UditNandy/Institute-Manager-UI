@@ -1,7 +1,8 @@
 {
   "/instituteManager/*": {
-    "target": "http://127.0.0.1:3000/",
-    "secure": "false",
-    "logLevel": "debug"
+    "target": "https://institutemanager.onrender.com/",
+    "secure": "true",
+    "logLevel": "debug",
+    "changeOrigin": true
   }
 }

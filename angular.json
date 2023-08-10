@@ -56,7 +56,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Institute-Manager-UI:build:production"
+              "browserTarget": "Institute-Manager-UI:build:production",
+              "proxyConfig": "proxy.config.json"
             },
             "development": {
               "browserTarget": "Institute-Manager-UI:build:development",
