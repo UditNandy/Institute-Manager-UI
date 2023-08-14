@@ -73,7 +73,12 @@ export class AuthorizationHomeComponent {
           .subscribe((dialogReturnValue) => {
             this.authorizationService
               .createAuthorizationProfile(dialogReturnValue)
-              .subscribe({ next: () => {}, error: () => {} });
+              .subscribe({
+                next: () => {
+                  this.fetchAuthorizationProfiles();
+                },
+                error: () => {},
+              });
           });
       },
       error: (error) => {},

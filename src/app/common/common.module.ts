@@ -1,15 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AuthInterceptorComponent } from './interceptor/auth-interceptor/auth-interceptor.component';
-
-
+import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 
 @NgModule({
-  declarations: [
-    AuthInterceptorComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [AuthInterceptorService],
+  imports: [CommonModule],
 })
-export class CommonModule { }
+export class CommonModule {}

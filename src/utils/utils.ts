@@ -51,4 +51,9 @@ export class Utils {
     }
     return validatorsToAdd;
   };
+
+  static tokenExpired(token: any) {
+    const expiry = JSON.parse(atob(token.split('.')[1])).exp;
+    return Math.floor(new Date().getTime() / 1000) >= expiry;
+  }
 }
