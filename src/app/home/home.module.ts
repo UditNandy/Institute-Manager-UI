@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { RouterModule } from '@angular/router';
 import { HomeRoutingModule } from './home-routing.module';
+import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [SignInComponent, HomeViewComponent, AdminDashboardComponent],
@@ -17,6 +18,7 @@ import { HomeRoutingModule } from './home-routing.module';
     HttpClientModule,
     RouterModule,
     HomeRoutingModule,
+    JwtModule,
   ],
   exports: [HomeViewComponent],
 })

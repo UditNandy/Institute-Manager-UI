@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AUTHORIZATION_PROFILE } from 'src/utils/constants';
+import { Observable } from 'rxjs';
+import {
+  AUTHORIZATION_PROFILE,
+  FETCH_AVAILABLE_AUTHORIZATIONS,
+} from 'src/utils/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +12,15 @@ import { AUTHORIZATION_PROFILE } from 'src/utils/constants';
 export class AuthorizationService {
   constructor(private httpClient: HttpClient) {}
 
-  getAuthorizationProfiles = () => {
+  getAuthorizationProfiles = (): Observable<any> => {
     return this.httpClient.get(AUTHORIZATION_PROFILE);
+  };
+
+  getCreateAuthorizationProfileFormDetails = (): Observable<any> => {
+    return this.httpClient.get('./assets/data/authorization-form.json');
+  };
+
+  getSystemAvaialableAuthorizations = (): Observable<any> => {
+    return this.httpClient.get(FETCH_AVAILABLE_AUTHORIZATIONS);
   };
 }

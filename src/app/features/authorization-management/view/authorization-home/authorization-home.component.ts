@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthorizationService } from '../../services/authorization.service';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateAuthorizationProfileComponent } from '../../modals/create-authorization-profile/create-authorization-profile.component';
+import { Utils } from 'src/utils/utils';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-authorization-home',
@@ -43,18 +44,33 @@ export class AuthorizationHomeComponent {
             ],
           })
         );
-        console.log(this.authorizationProfiles);
       },
       error: (error) => {},
     });
   };
 
-  action = (event: any) => {
-    console.log(event);
-  };
+  action = (event: any) => {};
 
   addNewProfile = () => {
-    console.log('Add new profile');
-    this.dialog.open(CreateAuthorizationProfileComponent);
+    forkJoin({
+      authorizationProfileFormJSON:
+        this.authorizationService.getCreateAuthorizationProfileFormDetails(),
+      systemAvailableAuthorizations:
+        this.authorizationService.getSystemAvaialableAuthorizations(),
+    }).subscribe({
+      next: (value) => {
+        const dialogConfig = Utils.matDialog();
+        dialogConfig.width = '672px';
+        dialogConfig.height = '341px';
+        dialogConfig.data = {
+          authorizationFormGroupJSON: value.authorizationProfileFormJSON,
+          systemAvailableAuthorizations:
+            value.systemAvailableAuthorizations.data.profiles,
+          modalHeading: 'Create Authorization Profile',
+        };
+        this.dialog.open(CreateAuthorizationProfileComponent, dialogConfig);
+      },
+      error: (error) => {},
+    });
   };
 }

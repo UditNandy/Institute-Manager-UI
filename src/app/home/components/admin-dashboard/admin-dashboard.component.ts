@@ -31,7 +31,6 @@ export class AdminDashboardComponent {
     this.getPostLoginData();
     this.dataService.currentRoute.subscribe((value) => {
       this.currentRoute = String(value);
-      console.log(this.currentRoute);
     });
   }
 

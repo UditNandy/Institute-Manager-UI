@@ -7,6 +7,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './common/interceptors/auth-interceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { AuthorizationManagementModule } from './features/authorization-management/authorization-management.module';
+import { JwtModule } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +18,8 @@ import { AuthorizationManagementModule } from './features/authorization-manageme
     AppRoutingModule,
     SharedModule,
     AuthorizationManagementModule,
+    JwtModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {

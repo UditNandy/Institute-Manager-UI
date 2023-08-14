@@ -15,10 +15,8 @@ export class TableComponent {
 
   ngOnInit() {
     this.displayedColumns.forEach((value: any) => {
-      console.log(value);
       this.requiredColumns.push(value.id);
     });
-    console.log('Displayed columns', this.displayedColumns);
   }
 
   emitAction = (event: any, element: any) => {

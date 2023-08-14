@@ -7,9 +7,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CreateAuthorizationProfileComponent } from './modals/create-authorization-profile/create-authorization-profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [AuthorizationHomeComponent, CreateAuthorizationProfileComponent],
+  declarations: [
+    AuthorizationHomeComponent,
+    CreateAuthorizationProfileComponent,
+  ],
   imports: [
     BrowserModule,
     CommonModule,
@@ -17,6 +22,8 @@ import { CreateAuthorizationProfileComponent } from './modals/create-authorizati
     HttpClientModule,
     SharedModule,
     MatDialogModule,
+    ReactiveFormsModule,
+    MatSelectModule,
   ],
 })
 export class AuthorizationManagementModule {}

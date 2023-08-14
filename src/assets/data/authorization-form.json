@@ -1,0 +1,34 @@
+{
+  "formGroups": [
+    {
+      "formGroup": "createAuthorizationProfile",
+      "controls": [
+        {
+          "id": "profilename",
+          "label": "Profile Name",
+          "placeholder": "Enter profile name",
+          "type": "text",
+          "value": "",
+          "validators": [
+            { "type": "required", "errorMessage": "Profile Name is mandatory" },
+            {
+              "type": "pattern",
+              "value": "",
+              "errorMessage": "Invalid profile name"
+            }
+          ]
+        },
+        {
+          "id": "profiles",
+          "label": "Profiles",
+          "placeholder": "Select profiles",
+          "type": "select",
+          "value": "",
+          "validators": [
+            { "type": "required", "errorMessage": "Profile Name is mandatory" }
+          ]
+        }
+      ]
+    }
+  ]
+}
