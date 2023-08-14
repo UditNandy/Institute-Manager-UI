@@ -60,15 +60,21 @@ export class AuthorizationHomeComponent {
     }).subscribe({
       next: (value) => {
         const dialogConfig = Utils.matDialog();
-        dialogConfig.width = '672px';
-        dialogConfig.height = '341px';
+        dialogConfig.width = '600px';
         dialogConfig.data = {
           authorizationFormGroupJSON: value.authorizationProfileFormJSON,
           systemAvailableAuthorizations:
             value.systemAvailableAuthorizations.data.profiles,
           modalHeading: 'Create Authorization Profile',
         };
-        this.dialog.open(CreateAuthorizationProfileComponent, dialogConfig);
+        this.dialog
+          .open(CreateAuthorizationProfileComponent, dialogConfig)
+          .afterClosed()
+          .subscribe((dialogReturnValue) => {
+            this.authorizationService
+              .createAuthorizationProfile(dialogReturnValue)
+              .subscribe({ next: () => {}, error: () => {} });
+          });
       },
       error: (error) => {},
     });

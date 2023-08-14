@@ -1,5 +1,5 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { Utils } from 'src/utils/utils';
 
@@ -14,7 +14,10 @@ export class CreateAuthorizationProfileComponent {
   protected modalHeading!: string;
   protected systemAvailableProfiles!: any[];
   protected selectedProfiles: any[] = [];
-  constructor(@Inject(MAT_DIALOG_DATA) protected data: any) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) protected data: any,
+    private dialogRef: MatDialogRef<CreateAuthorizationProfileComponent>
+  ) {}
 
   ngOnInit() {
     this.formControlsList =
@@ -31,12 +34,16 @@ export class CreateAuthorizationProfileComponent {
       });
   }
 
-  removeProfiles = (profile: string) => {
+  removeProfiles = (profile: any) => {
     this.selectedProfiles = this.selectedProfiles.filter((value) => {
-      return value !== profile;
+      return value.authCode !== profile.authCode;
     });
     this.authorizationProfileForm
       .get('profiles')
       ?.setValue(this.selectedProfiles);
+  };
+
+  submitAuthorizationProfile = () => {
+    this.dialogRef.close(this.authorizationProfileForm.value);
   };
 }

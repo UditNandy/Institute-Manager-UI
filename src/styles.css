@@ -12,5 +12,5 @@ body { margin: 0; font-family: "Hind_Madurai", "Helvetica Neue", sans-serif; }
 
 
 .modalHeading{
-    @apply font-hindMadurai text-xl font-semibold px-6 pt-6 
+    @apply flex justify-between items-center font-hindMadurai text-xl font-semibold px-6 pt-6 
 }

@@ -23,4 +23,8 @@ export class AuthorizationService {
   getSystemAvaialableAuthorizations = (): Observable<any> => {
     return this.httpClient.get(FETCH_AVAILABLE_AUTHORIZATIONS);
   };
+
+  createAuthorizationProfile = (payload: any) => {
+    return this.httpClient.post(AUTHORIZATION_PROFILE, payload);
+  };
 }

@@ -4,7 +4,7 @@
       "formGroup": "createAuthorizationProfile",
       "controls": [
         {
-          "id": "profilename",
+          "id": "profileName",
           "label": "Profile Name",
           "placeholder": "Enter profile name",
           "type": "text",
