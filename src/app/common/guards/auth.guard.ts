@@ -25,15 +25,12 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     const token = sessionStorage.getItem('access-token');
     if (!token) {
-      console.log('1');
       this.router.navigateByUrl('');
       return false;
     } else {
       if (!Utils.tokenExpired(token)) {
-        console.log('2');
         return true;
       } else {
-        console.log('3');
         this.router.navigateByUrl('');
         return false;
       }

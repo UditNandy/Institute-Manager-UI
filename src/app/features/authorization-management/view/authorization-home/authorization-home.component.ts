@@ -71,14 +71,16 @@ export class AuthorizationHomeComponent {
           .open(CreateAuthorizationProfileComponent, dialogConfig)
           .afterClosed()
           .subscribe((dialogReturnValue) => {
-            this.authorizationService
-              .createAuthorizationProfile(dialogReturnValue)
-              .subscribe({
-                next: () => {
-                  this.fetchAuthorizationProfiles();
-                },
-                error: () => {},
-              });
+            if (dialogReturnValue) {
+              this.authorizationService
+                .createAuthorizationProfile(dialogReturnValue)
+                .subscribe({
+                  next: () => {
+                    this.fetchAuthorizationProfiles();
+                  },
+                  error: () => {},
+                });
+            }
           });
       },
       error: (error) => {},
