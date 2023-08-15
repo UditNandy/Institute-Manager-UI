@@ -27,4 +27,12 @@ export class AuthorizationService {
   createAuthorizationProfile = (payload: any) => {
     return this.httpClient.post(AUTHORIZATION_PROFILE, payload);
   };
+
+  deleteAuthorizationProfile = (profileName: string) => {
+    let deleteAuthorizationProfilePayload: any = { profileName: profileName };
+    return this.httpClient.delete(
+      AUTHORIZATION_PROFILE,
+      {body:deleteAuthorizationProfilePayload}
+    );
+  };
 }

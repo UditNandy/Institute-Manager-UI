@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateAuthorizationProfileComponent } from '../../modals/create-authorization-profile/create-authorization-profile.component';
 import { Utils } from 'src/utils/utils';
 import { forkJoin } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-authorization-home',
@@ -17,14 +18,16 @@ export class AuthorizationHomeComponent {
     {
       id: 'profileName',
       name: 'Profile',
-      headClass: 'w-[70%] text-base',
-      rowClass: 'w-[70%] text-base text-[#7A7676]',
+      headClass: 'w-[70%] font-hindMadurai font-semibold text-base',
+      rowClass:
+        'w-[70%] font-hindMadurai font-semibold text-base text-[#7A7676]',
     },
     { id: 'actions', name: 'Actions' },
   ];
   constructor(
     private authorizationService: AuthorizationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -49,7 +52,32 @@ export class AuthorizationHomeComponent {
     });
   };
 
-  action = (event: any) => {};
+  deleteAuthorizationProfile = (profileName: string) => {
+    this.authorizationService
+      .deleteAuthorizationProfile(profileName)
+      .subscribe({
+        next: (response: any) => {
+          this.snackBar.open(response.message, 'ok');
+          this.fetchAuthorizationProfiles();
+        },
+        error: (error) => {},
+      });
+  };
+  updateAuthorizationProfile = (element: any) => {};
+
+  action = (event: any) => {
+    console.log(event);
+    const action = event.action;
+
+    switch (action) {
+      case 'Delete':
+        this.deleteAuthorizationProfile(event.element.profileName);
+        break;
+      case 'Update':
+        this.updateAuthorizationProfile(event.element);
+        break;
+    }
+  };
 
   addNewProfile = () => {
     forkJoin({
