@@ -1,4 +1,4 @@
-<div>
+<div class="px-2">
   <div class="modalHeading">
     <span>
       {{ modalHeading }}
@@ -15,7 +15,7 @@
   <div class="px-7 pt-[30px]">
     <div>
       <form [formGroup]="authorizationProfileForm">
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 gap-x-10">
           <div *ngFor="let control of formControlsList">
             <div
               *ngIf="control.type !== 'select'"
@@ -25,14 +25,15 @@
                 control.label
               }}</label>
               <input
-                class="w-full h-10 rounded-[10px] outline-none bg-[#D9D9D9] bg-opacity-20 border-[1px] border-[#D9D9D933] font-hindMadurai px-[10px]"
+                class="w-full h-10 rounded-[10px] outline-none bg-[#D9D9D9] bg-opacity-20 border-[1px] border-[#D9D9D933] font-hindMadurai px-[10px] read-only:cursor-not-allowed"
+                [readonly]="data.action === 'View'"
                 [type]="control.type"
                 [formControlName]="control.id"
                 [placeholder]="control.placeholder"
               />
             </div>
             <div
-              *ngIf="control.type === 'select'"
+              *ngIf="control.type === 'select' && data.action !== 'View'"
               class="flex flex-col w-[215px]"
             >
               <label class="font-hindMadurai font-semibold">{{
@@ -59,12 +60,15 @@
         </div>
         <div
           *ngIf="!selectedProfiles.length"
-          class="mt-7 font-hindMadurai font-semibold"
+          class="my-7 font-hindMadurai font-semibold"
         >
           No profiles added
         </div>
-        <div *ngIf="selectedProfiles.length" class="mt-7">
-          <div class="font-hindMadurai font-semibold">Selected Profiles</div>
+        <div *ngIf="selectedProfiles.length" class="my-7">
+          <div class="font-hindMadurai font-semibold">
+            <span *ngIf="data.action !== 'View'">Selected Profiles </span>
+            <span *ngIf="data.action === 'View'"> Profiles </span>
+          </div>
           <div class="flex justify-start gap-1 flex-wrap">
             <div *ngFor="let selectedProfile of selectedProfiles">
               <div
@@ -74,6 +78,7 @@
                   {{ selectedProfile.authCode }}
                 </div>
                 <div
+                  *ngIf="data.action !== 'View'"
                   class="cursor-pointer"
                   (click)="removeProfiles(selectedProfile)"
                 >
@@ -87,7 +92,10 @@
             </div>
           </div>
         </div>
-        <div class="flex justify-center items-center my-7">
+        <div
+          *ngIf="data.action !== 'View'"
+          class="flex justify-center items-center mb-7"
+        >
           <div>
             <app-button
               [disabled]="authorizationProfileForm.invalid"

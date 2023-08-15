@@ -43,6 +43,7 @@ export class AuthorizationHomeComponent {
           (value) => ({
             ...value,
             actions: [
+              { type: 'View', class: 'bg-blue-400' },
               { type: 'Update', class: 'bg-green-400' },
               { type: 'Delete', class: 'bg-red-400' },
             ],
@@ -72,6 +73,7 @@ export class AuthorizationHomeComponent {
         this.deleteAuthorizationProfile(event.element.profileName);
         break;
       case 'Update':
+      case 'View':
         this.openAuthorizationProfileDialog(event.action, event.element);
         break;
     }
@@ -100,10 +102,18 @@ export class AuthorizationHomeComponent {
   };
 
   openAuthorizationProfileDialog = (action: string, value: any = {}) => {
-    const modalHeading =
-      action === 'Add'
-        ? 'Create Authorization Profile'
-        : 'Update Authorization Profile';
+    let modalHeading: string;
+
+    switch (action) {
+      case 'Add':
+        modalHeading = 'Create Authorization Profile';
+        break;
+      case 'Update':
+        modalHeading = 'Update Authorization Profile';
+        break;
+      case 'View':
+        modalHeading = value.profileName;
+    }
 
     forkJoin({
       authorizationProfileFormJSON:
@@ -113,7 +123,7 @@ export class AuthorizationHomeComponent {
     }).subscribe({
       next: (response) => {
         const dialogConfig = Utils.matDialog();
-        dialogConfig.width = '600px';
+        // dialogConfig.width = '600px';
         dialogConfig.data = {
           authorizationFormGroupJSON: response.authorizationProfileFormJSON,
           systemAvailableAuthorizations:

@@ -33,7 +33,7 @@ export class CreateAuthorizationProfileComponent {
           this.authorizationProfileForm.get('profiles')?.value;
       });
 
-    if (this.data.action === 'Update') {
+    if (this.data.action === 'Update' || this.data.action === 'View') {
       this.presetAuthorizationProfileValue();
     }
   }
