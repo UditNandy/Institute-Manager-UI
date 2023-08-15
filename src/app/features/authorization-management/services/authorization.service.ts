@@ -24,15 +24,18 @@ export class AuthorizationService {
     return this.httpClient.get(FETCH_AVAILABLE_AUTHORIZATIONS);
   };
 
-  createAuthorizationProfile = (payload: any) => {
+  createAuthorizationProfile = (payload: any): Observable<any> => {
     return this.httpClient.post(AUTHORIZATION_PROFILE, payload);
   };
 
-  deleteAuthorizationProfile = (profileName: string) => {
+  deleteAuthorizationProfile = (profileName: string): Observable<any> => {
     let deleteAuthorizationProfilePayload: any = { profileName: profileName };
-    return this.httpClient.delete(
-      AUTHORIZATION_PROFILE,
-      {body:deleteAuthorizationProfilePayload}
-    );
+    return this.httpClient.delete(AUTHORIZATION_PROFILE, {
+      body: deleteAuthorizationProfilePayload,
+    });
+  };
+
+  updateAuthorizationProfile = (payload: any): Observable<any> => {
+    return this.httpClient.put(AUTHORIZATION_PROFILE, payload);
   };
 }

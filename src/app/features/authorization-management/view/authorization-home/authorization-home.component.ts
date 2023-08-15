@@ -5,6 +5,7 @@ import { CreateAuthorizationProfileComponent } from '../../modals/create-authori
 import { Utils } from 'src/utils/utils';
 import { forkJoin } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { disableDebugTools } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-authorization-home',
@@ -63,51 +64,74 @@ export class AuthorizationHomeComponent {
         error: (error) => {},
       });
   };
-  updateAuthorizationProfile = (element: any) => {};
 
   action = (event: any) => {
-    console.log(event);
     const action = event.action;
-
     switch (action) {
       case 'Delete':
         this.deleteAuthorizationProfile(event.element.profileName);
         break;
       case 'Update':
-        this.updateAuthorizationProfile(event.element);
+        this.openAuthorizationProfileDialog(event.action, event.element);
         break;
     }
   };
 
-  addNewProfile = () => {
+  createAuthorizationProfile = (dialogReturnValue: any) => {
+    this.authorizationService
+      .createAuthorizationProfile(dialogReturnValue)
+      .subscribe({
+        next: () => {
+          this.fetchAuthorizationProfiles();
+        },
+        error: () => {},
+      });
+  };
+
+  updateAuthorizationProfile = (dialogReturnValue: any) => {
+    this.authorizationService
+      .updateAuthorizationProfile(dialogReturnValue)
+      .subscribe({
+        next: (response) => {
+          this.fetchAuthorizationProfiles();
+        },
+        error: (error) => {},
+      });
+  };
+
+  openAuthorizationProfileDialog = (action: string, value: any = {}) => {
+    const modalHeading =
+      action === 'Add'
+        ? 'Create Authorization Profile'
+        : 'Update Authorization Profile';
+
     forkJoin({
       authorizationProfileFormJSON:
         this.authorizationService.getCreateAuthorizationProfileFormDetails(),
       systemAvailableAuthorizations:
         this.authorizationService.getSystemAvaialableAuthorizations(),
     }).subscribe({
-      next: (value) => {
+      next: (response) => {
         const dialogConfig = Utils.matDialog();
         dialogConfig.width = '600px';
         dialogConfig.data = {
-          authorizationFormGroupJSON: value.authorizationProfileFormJSON,
+          authorizationFormGroupJSON: response.authorizationProfileFormJSON,
           systemAvailableAuthorizations:
-            value.systemAvailableAuthorizations.data.profiles,
-          modalHeading: 'Create Authorization Profile',
+            response.systemAvailableAuthorizations.data.profiles,
+          authorizationProfileValues: value,
+          modalHeading: modalHeading,
+          action: action,
         };
         this.dialog
           .open(CreateAuthorizationProfileComponent, dialogConfig)
           .afterClosed()
           .subscribe((dialogReturnValue) => {
             if (dialogReturnValue) {
-              this.authorizationService
-                .createAuthorizationProfile(dialogReturnValue)
-                .subscribe({
-                  next: () => {
-                    this.fetchAuthorizationProfiles();
-                  },
-                  error: () => {},
-                });
+              if (action === 'Add')
+                this.createAuthorizationProfile(dialogReturnValue);
+              else if (action === 'Update') {
+                this.updateAuthorizationProfile(dialogReturnValue);
+              }
             }
           });
       },

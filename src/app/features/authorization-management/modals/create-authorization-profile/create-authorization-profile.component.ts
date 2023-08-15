@@ -32,7 +32,37 @@ export class CreateAuthorizationProfileComponent {
         this.selectedProfiles =
           this.authorizationProfileForm.get('profiles')?.value;
       });
+
+    if (this.data.action === 'Update') {
+      this.presetAuthorizationProfileValue();
+    }
   }
+
+  presetAuthorizationProfileValue = () => {
+    this.formControlsList.forEach((value: any) => {
+      if (this.data.authorizationProfileValues[value.id]) {
+        if (value.id === 'profiles') {
+          this.data.authorizationProfileValues[value.id].forEach(
+            (profile: any) => {
+              this.systemAvailableProfiles.forEach((systemProfiles) => {
+                if (profile.authCode === systemProfiles.authCode) {
+                  this.selectedProfiles.push(systemProfiles);
+                  return;
+                }
+              });
+            }
+          );
+          this.authorizationProfileForm
+            .get(value.id)
+            ?.setValue(this.selectedProfiles);
+        } else {
+          this.authorizationProfileForm
+            .get(value.id)
+            ?.setValue(this.data.authorizationProfileValues[value.id]);
+        }
+      }
+    });
+  };
 
   removeProfiles = (profile: any) => {
     this.selectedProfiles = this.selectedProfiles.filter((value) => {
