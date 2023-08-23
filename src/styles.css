@@ -7,3 +7,10 @@
     font-family: "Hind_Madurai";
     src: local("Hind_Madurai"), url(./assets/fonts/Hind_Madurai/HindMadurai-Regular.ttf) format("truetype");
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: "Hind_Madurai", "Helvetica Neue", sans-serif; }
+
+
+.modalHeading{
+    @apply flex justify-between items-center font-hindMadurai text-xl font-semibold px-6 pt-6 
+}
