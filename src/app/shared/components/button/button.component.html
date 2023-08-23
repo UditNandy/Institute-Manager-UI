@@ -1,0 +1,12 @@
+<button
+  [disabled]="disabled"
+  class="hover:shadow-xl disabled:cursor-not-allowed cursor-pointer"
+  (click)="buttonClicked(buttonTitle)"
+  [ngClass]="
+    buttonStyle
+      ? buttonStyle
+      : 'w-[100px] h-[35px] text-white rounded bg-slate-700 disabled:bg-slate-200 disabled:text-slate-700 disabled:font-medium'
+  "
+>
+  {{ buttonTitle }}
+</button>

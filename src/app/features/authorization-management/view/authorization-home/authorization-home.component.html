@@ -1,0 +1,20 @@
+<div class="py-10 px-14" *ngIf="authorizationProfiles">
+  <div class="text-2xl mb-3 flex justify-between">
+    <div>Authorization Management</div>
+    <div class="flex justify-end">
+      <app-button
+        (clickEvent)="openAuthorizationProfileDialog('Add')"
+        [buttonStyle]="
+          'w-[50px] h-[50px] text-3xl rounded-full bg-green-400 text-white'
+        "
+        buttonTitle="+"
+      >
+      </app-button>
+    </div>
+  </div>
+  <app-table
+    (buttonEvent)="action($event)"
+    [dataSource]="authorizationProfiles"
+    [displayedColumns]="displayedColumns"
+  ></app-table>
+</div>

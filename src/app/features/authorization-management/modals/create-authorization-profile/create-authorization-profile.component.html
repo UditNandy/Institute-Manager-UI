@@ -1,0 +1,110 @@
+<div class="px-2">
+  <div class="modalHeading">
+    <span>
+      {{ modalHeading }}
+    </span>
+    <span class="cursor-pointer" mat-dialog-close>
+      <img
+        src="./assets/images/cross-icon.svg"
+        alt="x"
+        height="14px"
+        width="14px"
+      />
+    </span>
+  </div>
+  <div class="px-7 pt-[30px]">
+    <div>
+      <form [formGroup]="authorizationProfileForm">
+        <div class="grid grid-cols-2 gap-x-10">
+          <div *ngFor="let control of formControlsList">
+            <div
+              *ngIf="control.type !== 'select'"
+              class="flex flex-col w-[215px]"
+            >
+              <label class="font-hindMadurai font-semibold">{{
+                control.label
+              }}</label>
+              <input
+                class="w-full h-10 rounded-[10px] outline-none bg-[#D9D9D9] bg-opacity-20 border-[1px] border-[#D9D9D933] font-hindMadurai px-[10px] read-only:cursor-not-allowed"
+                [readonly]="data.action === 'View'"
+                [type]="control.type"
+                [formControlName]="control.id"
+                [placeholder]="control.placeholder"
+              />
+            </div>
+            <div
+              *ngIf="control.type === 'select' && data.action !== 'View'"
+              class="flex flex-col w-[215px]"
+            >
+              <label class="font-hindMadurai font-semibold">{{
+                control.label
+              }}</label>
+              <mat-select
+                [multiple]="true"
+                [formControlName]="control.id"
+                [placeholder]="control.placeholder"
+                class="w-full pt-2 h-10 rounded-[10px] outline-none bg-[#D9D9D9] bg-opacity-20 border-[1px] border-[#D9D9D933] font-hindMadurai px-[10px]"
+              >
+                <mat-select-trigger>
+                  <span>{{ control.placeholder }}</span>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let profile of systemAvailableProfiles"
+                  [value]="profile"
+                >
+                  {{ profile.authCode }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="!selectedProfiles.length"
+          class="my-7 font-hindMadurai font-semibold"
+        >
+          No profiles added
+        </div>
+        <div *ngIf="selectedProfiles.length" class="my-7">
+          <div class="font-hindMadurai font-semibold">
+            <span *ngIf="data.action !== 'View'">Selected Profiles </span>
+            <span *ngIf="data.action === 'View'"> Profiles </span>
+          </div>
+          <div class="flex justify-start gap-1 flex-wrap">
+            <div *ngFor="let selectedProfile of selectedProfiles">
+              <div
+                class="flex justify-between items-center gap-2 px-2 h-7 rounded-[20px] bg-slate-100"
+              >
+                <div class="font-hindMadurai text-sm text-slate-400">
+                  {{ selectedProfile.authCode }}
+                </div>
+                <div
+                  *ngIf="data.action !== 'View'"
+                  class="cursor-pointer"
+                  (click)="removeProfiles(selectedProfile)"
+                >
+                  <img
+                    src="./assets/images/cross-icon.svg"
+                    height="10px"
+                    width="10px"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="data.action !== 'View'"
+          class="flex justify-center items-center mb-7"
+        >
+          <div>
+            <app-button
+              [disabled]="authorizationProfileForm.invalid"
+              [buttonTitle]="'Submit'"
+              (clickEvent)="submitAuthorizationProfile()"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
