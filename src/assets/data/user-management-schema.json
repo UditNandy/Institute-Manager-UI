@@ -1,0 +1,453 @@
+{
+  "groups": [
+    {
+      "groupId": "personalAndAddressInfomation",
+      "groupLabel": "Personal and address information",
+      "subGroups": [
+        {
+          "subGroupId": "personalInformation",
+          "subGroupLabel": "Personal Information",
+          "controls": [
+            {
+              "id": "name",
+              "label": "Name",
+              "placeholder": "Enter student name",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Student Name is required"
+                },
+                {
+                  "type": "pattern",
+                  "value": "",
+                  "errorMessage": "Student name cannot contain numbers or special characters"
+                }
+              ]
+            },
+            {
+              "id": "dob",
+              "label": "Date of Birth",
+              "placeholder": "Enter student date of birth",
+              "type": "date",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Date of birth is required"
+                }
+              ]
+            },
+            {
+              "id": "bloodGroup",
+              "label": "bloodGroup",
+              "placeholder": "Select blood group",
+              "type": "select",
+              "value": [
+                { "groupId": "A+" },
+                { "groupId": "B+" },
+                { "groupId": "O+" },
+                { "groupId": "AB+" },
+                { "groupId": "A-" },
+                { "groupId": "B-" },
+                { "groupId": "O-" },
+                { "groupId": "AB-" }
+              ],
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Blood group is required"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "subGroupId": "address",
+          "subGroupLabel": "Address",
+          "controls": [
+            {
+              "id": "houseNo",
+              "label": "House No",
+              "placeholder": "Enter House Number",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "House No is required"
+                }
+              ]
+            },
+            {
+              "id": "area",
+              "label": "Area/Locality",
+              "placeholder": "Enter area/locality",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Area/Locality is required"
+                }
+              ]
+            },
+            {
+              "id": "pinCode",
+              "label": "Pincode",
+              "placeholder": "Enter pincode",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Pincode is required"
+                }
+              ]
+            },
+            {
+              "id": "country",
+              "label": "Country",
+              "placeholder": "Enter country",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Country is required"
+                }
+              ]
+            },
+            {
+              "id": "state",
+              "label": "State",
+              "placeholder": "Enter state",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "State is required"
+                }
+              ]
+            },
+            {
+              "id": "city",
+              "label": "City",
+              "placeholder": "Enter city",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "City is required"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "credentials",
+      "groupLabel": "Credentials",
+      "subGroups": [],
+      "controls": [
+        {
+          "id": "rollNumber",
+          "label": "Roll Number",
+          "placeholder": "Student's roll number",
+          "type": "text",
+          "value": "",
+          "validators": [
+            {
+              "type": "required",
+              "errorMessage": "Student's roll number is required"
+            }
+          ]
+        },
+        {
+          "id": "class",
+          "label": "Class",
+          "placeholder": "Studet's class",
+          "type": "select",
+          "value": [
+            { "class": "LKG" },
+            { "class": "UKG" },
+            { "class": "1st" },
+            { "class": "2nd" },
+            { "class": "3rd" },
+            { "class": "4th" },
+            { "class": "5th" },
+            { "class": "6th" },
+            { "class": "7th" },
+            { "class": "8th" },
+            { "class": "9th" },
+            { "class": "10th" },
+            { "class": "11th" },
+            { "class": "12th" }
+          ],
+          "validators": [
+            {
+              "type": "required",
+              "errorMessage": "Student's class is required"
+            }
+          ]
+        },
+        {
+          "id": "section",
+          "label": "Secion",
+          "placeholder": "Student's section",
+          "type": "select",
+          "value": [
+            { "section": "A" },
+            { "section": "B" },
+            { "section": "C" },
+            { "section": "D" }
+          ],
+          "validators": [
+            {
+              "type": "required",
+              "errorMessage": "Student's section is required"
+            }
+          ]
+        },
+        {
+          "id": "password",
+          "label": "Password",
+          "placeholder": "Enter password",
+          "type": "text",
+          "value": "",
+          "validators": [
+            {
+              "type": "required",
+              "errorMessage": "Password is required"
+            }
+          ]
+        },
+        {
+          "id": "passwordConfirm",
+          "label": "Confirm Password",
+          "placeholder": "Confirm Password",
+          "type": "text",
+          "value": "",
+          "validators": [
+            {
+              "type": "required",
+              "errorMessage": "Confirm Password is required"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "parentsAndGuardiansInformation",
+      "groupLabel": "Parents and Guardians Information",
+      "subGroups": [
+        {
+          "subGroupId": "fatherDetails",
+          "subGroupLabel": "Father's information",
+          "controls": [
+            {
+              "id": "name",
+              "label": "Name",
+              "placeholder": "Enter father's name",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Father's Name is required"
+                },
+                {
+                  "type": "pattern",
+                  "value": "",
+                  "errorMessage": "Father's name cannot contain numbers or special characters"
+                }
+              ]
+            },
+            {
+              "id": "dob",
+              "label": "Date of Birth",
+              "placeholder": "Father's date of birth",
+              "type": "date",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Date of birth is required"
+                }
+              ]
+            },
+            {
+              "id": "occupation",
+              "label": "Occupation",
+              "placeholder": "Father's occupation",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Father's occupation is required"
+                }
+              ]
+            },
+            {
+              "id": "aadhaarNumber",
+              "label": "Aadhaar Number",
+              "placeholder": "Enter aadhaar number",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Aadhaar number is required"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "subGroupId": "motherDetails",
+          "subGroupLabel": "Mother's information",
+          "controls": [
+            {
+              "id": "name",
+              "label": "Name",
+              "placeholder": "Enter mother's name",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Mother's Name is required"
+                },
+                {
+                  "type": "pattern",
+                  "value": "",
+                  "errorMessage": "Mother's name cannot contain numbers or special characters"
+                }
+              ]
+            },
+            {
+              "id": "dob",
+              "label": "Date of Birth",
+              "placeholder": "Mother's date of birth",
+              "type": "date",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Date of birth is required"
+                }
+              ]
+            },
+            {
+              "id": "occupation",
+              "label": "Occupation",
+              "placeholder": "Mother's occupation",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Mother's occupation is required"
+                }
+              ]
+            },
+            {
+              "id": "aadhaarNumber",
+              "label": "Aadhaar Number",
+              "placeholder": "Enter aadhaar number",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Aadhaar number is required"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "subGroupId": "guardiansDetails",
+          "subGroupLabel": "Guardian's information",
+          "controls": [
+            {
+              "id": "name",
+              "label": "Name",
+              "placeholder": "Enter guardian's name",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Guardian's Name is required"
+                },
+                {
+                  "type": "pattern",
+                  "value": "",
+                  "errorMessage": "Guardian's name cannot contain numbers or special characters"
+                }
+              ]
+            },
+            {
+              "id": "relation",
+              "label": "Relation",
+              "placeholder": "Guardian's relation with student",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Relation is required"
+                }
+              ]
+            },
+            {
+              "id": "dob",
+              "label": "Date of Birth",
+              "placeholder": "Guardian's date of birth",
+              "type": "date",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Date of birth is required"
+                }
+              ]
+            },
+            {
+              "id": "occupation",
+              "label": "Occupation",
+              "placeholder": "Mother's occupation",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Mother's occupation is required"
+                }
+              ]
+            },
+            {
+              "id": "aadhaarNumber",
+              "label": "Aadhaar Number",
+              "placeholder": "Enter aadhaar number",
+              "type": "text",
+              "value": "",
+              "validators": [
+                {
+                  "type": "required",
+                  "errorMessage": "Aadhaar number is required"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
